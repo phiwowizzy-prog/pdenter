@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Content Mastery — Pdenterprisesmedia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E9C8;
+    --obsidian: #0D0D0D;
+    --charcoal: #1A1A1A;
+    --dark-card: #111111;
+    --mid: #2A2A2A;
+    --border: rgba(201,168,76,0.25);
+    --border-strong: rgba(201,168,76,0.55);
+    --text-primary: #F0EAD6;
+    --text-secondary: #A8A090;
+    --text-muted: #6B6259;
+    --accent-green: #4CAF7C;
+    --accent-blue: #4C8AC9;
+    --white: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--obsidian);
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .no-print { display: none; }
+    body { background: white; color: #111; }
+    .module-card { break-inside: avoid; }
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 80% at 80% 100%, rgba(201,168,76,0.06) 0%, transparent 60%),
+                var(--obsidian);
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 1px; height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 1px; height: 120px;
+    background: linear-gradient(to top, transparent, var(--gold), transparent);
+  }
+
+  .cover-logo-area {
+    margin-bottom: 48px;
+    animation: fadeUp 1s ease both;
+  }
+
+  .brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border-strong);
+    padding: 10px 24px;
+    border-radius: 40px;
+    background: rgba(201,168,76,0.06);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .brand-badge::before {
+    content: '';
+    display: block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .cover-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 8px;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+
+  .cover-title span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .cover-subtitle-line {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+
+  .cover-tagline {
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    max-width: 560px;
+    margin: 0 auto 56px;
+    line-height: 1.6;
+    animation: fadeUp 1s ease 0.5s both;
+  }
+
+  .cover-tagline strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .cover-stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 64px;
+    animation: fadeUp 1s ease 0.6s both;
+  }
+
+  .cover-stat {
+    text-align: center;
+  }
+
+  .cover-stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+
+  .cover-stat-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 6px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .cover-divider {
+    width: 1px;
+    height: 48px;
+    background: var(--border);
+    align-self: center;
+  }
+
+  .cover-outcomes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    max-width: 860px;
+    width: 100%;
+    margin: 0 auto;
+    animation: fadeUp 1s ease 0.7s both;
+  }
+
+  .cover-outcome-item {
+    background: rgba(201,168,76,0.05);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    text-align: left;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+  }
+
+  .cover-outcome-item:hover {
+    background: rgba(201,168,76,0.10);
+    border-color: var(--border-strong);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+  }
+
+  .check-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+    font-size: 11px;
+    margin-top: 1px;
+  }
+
+  /* ── MAIN CONTAINER ── */
+  .main-container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 32px 120px;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .section-break {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 80px 0 64px;
+  }
+
+  .section-break-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-strong), transparent);
+  }
+
+  .section-break-gem {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ── WELCOME SECTION ── */
+  .welcome-section {
+    text-align: center;
+    padding: 80px 0 0;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .welcome-text {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    max-width: 640px;
+    margin: 0 auto 48px;
+    line-height: 1.8;
+  }
+
+  /* ── HOW TO USE ── */
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .how-card {
+    background: var(--dark-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .how-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .how-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .how-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 900;
+    color: rgba(201,168,76,0.12);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .how-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .how-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ── MODULE CARDS ── */
+  .modules-header {
+    text-align: center;
+    padding: 80px 0 48px;
+  }
+
+  .module-progress-bar {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+  }
+
+  .progress-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+
+  .progress-dot.active {
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+  }
+
+  .module-card {
+    background: var(--dark-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    margin-bottom: 32px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .module-card:hover {
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  }
+
+  .module-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 36px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 60%);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .module-number-badge {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .module-num-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  .module-num-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .module-header-text {
+    flex: 1;
+  }
+
+  .module-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .module-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .module-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  .module-time-badge {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    flex-shrink: 0;
+  }
+
+  .module-body {
+    padding: 36px 36px 32px;
+  }
+
+  /* ── CONTENT BLOCKS ── */
+  .content-h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin: 40px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .content-h2::before {
+    content: '';
+    display: block;
+    width: 4px; height: 22px;
+    background: var(--gold);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .content-p {
+    font-size: 15.5px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .content-p strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* ── PROMPT TEMPLATES ── */
+  .prompt-block {
+    background: #0A0A0A;
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    margin: 24px 0;
+    overflow: hidden;
+  }
+
+  .prompt-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background: rgba(201,168,76,0.06);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .prompt-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .prompt-label::before {
+    content: '◆';
+    font-size: 8px;
+  }
+
+  .copy-btn {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--border-strong);
+    color: var(--gold);
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    transition: all 0.2s ease;
+  }
+
+  .copy-btn:hover {
+    background: rgba(201,168,76,0.2);
+  }
+
+  .prompt-content {
+    padding: 20px 22px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: #C8C0B0;
+    line-height: 1.75;
+    white-space: pre-wrap;
+  }
+
+  .prompt-content .placeholder {
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.1);
+    border-radius: 3px;
+    padding: 0 3px;
+  }
+
+  /* ── TOOLKIT TABLE ── */
+  .toolkit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .toolkit-item {
+    background: #0A0A0A;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .toolkit-item:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+
+  .toolkit-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .toolkit-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+  }
+
+  .toolkit-desc {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── PROMPT COMPARE ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .compare-card {
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid;
+  }
+
+  .compare-card.bad {
+    background: rgba(200,60,60,0.06);
+    border-color: rgba(200,60,60,0.25);
+  }
+
+  .compare-card.good {
+    background: rgba(76,175,124,0.06);
+    border-color: rgba(76,175,124,0.3);
+  }
+
+  .compare-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .compare-card.bad .compare-badge { color: #E07070; }
+  .compare-card.good .compare-badge { color: var(--accent-green); }
+
+  .compare-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 12.5px;
+    color: #A8A090;
+    line-height: 1.6;
+  }
+
+  /* ── ACTION STEPS ── */
+  .action-box {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.03) 100%);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 28px 30px;
+    margin: 32px 0 0;
+  }
+
+  .action-box-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .action-box-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .action-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .action-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 14.5px;
+    color: var(--text-secondary);
+  }
+
+  .action-check {
+    width: 20px; height: 20px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .action-check:hover {
+    background: rgba(201,168,76,0.15);
+    border-color: var(--gold);
+  }
+
+  .action-check.done {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .action-check.done::after {
+    content: '✓';
+    color: var(--obsidian);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* ── WORKFLOW TABLE ── */
+  .workflow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 24px 0;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .workflow-step {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--dark-card);
+    transition: background 0.2s ease;
+  }
+
+  .workflow-step:last-child { border-bottom: none; }
+  .workflow-step:hover { background: rgba(201,168,76,0.04); }
+
+  .step-hour {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 10px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  /* ── BONUS PROMPTS SECTION ── */
+  .bonus-section {
+    background: var(--dark-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px 40px;
+    margin-top: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bonus-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+  }
+
+  .bonus-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .prompt-category {
+    margin-bottom: 40px;
+  }
+
+  .prompt-cat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .prompt-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .prompt-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 18px;
+    background: rgba(201,168,76,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .prompt-item:hover {
+    background: rgba(201,168,76,0.07);
+    border-color: var(--border-strong);
+    color: var(--text-primary);
+  }
+
+  .prompt-item-icon {
+    color: var(--gold);
+    font-size: 12px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── RESOURCES SECTION ── */
+  .resources-section {
+    margin-top: 64px;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  .resource-card {
+    background: var(--dark-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .resource-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .resource-card-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .resource-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .resource-card-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: border-color 0.2s ease;
+  }
+
+  .resource-link:hover {
+    border-color: var(--gold);
+  }
+
+  .resource-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  /* ── 30-DAY PLAN ── */
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 32px 0;
+  }
+
+  .plan-week {
+    background: var(--dark-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 20px;
+    position: relative;
+  }
+
+  .plan-week-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .plan-week-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .plan-week-desc {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── CLOSING ── */
+  .closing-section {
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+  }
+
+  .closing-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.5vw, 38px);
+    font-style: italic;
+    color: var(--white);
+    max-width: 700px;
+    margin: 0 auto 32px;
+    line-height: 1.4;
+  }
+
+  .closing-quote span { color: var(--gold); }
+
+  .closing-sub {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+  }
+
+  .closing-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 60px;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+
+  /* ── VIRAL KEYWORD CALLOUT ── */
+  .viral-keyword {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid var(--border-strong);
+    color: var(--gold-light);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+
+  /* ── ROI HIGHLIGHT ── */
+  .roi-highlight {
+    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
+    border: 1px solid var(--border-strong);
+    border-left: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .roi-highlight strong {
+    color: var(--gold-light);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--obsidian); }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .main-container { padding: 0 20px 80px; }
+    .how-grid { grid-template-columns: 1fr; }
+    .toolkit-grid { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .resources-grid { grid-template-columns: 1fr; }
+    .plan-grid { grid-template-columns: repeat(2, 1fr); }
+    .module-header { flex-wrap: wrap; gap: 12px; }
+    .module-body { padding: 24px 20px; }
+    .bonus-section { padding: 32px 20px; }
+    .cover-stats { gap: 24px; }
+    .cover-divider { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ COVER ═══ -->
+<section class="cover">
+  <div class="cover-logo-area">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+      <div class="brand-badge">✦ Pdenterprisesmedia ✦</div>
+      <div style="font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:var(--text-muted); letter-spacing:0.05em;">For Small Business Owners</div>
+    </div>
+  </div>
+  <p class="cover-eyebrow">The Complete System</p>
+  <h1 class="cover-title">AI Content<br><span>Mastery</span></h1>
+  <p class="cover-subtitle-line">For Small Business Owners</p>
+  <p class="cover-tagline">
+    <strong>Create a month of content in one afternoon</strong> — without hiring anyone, without the overwhelm, and without ever staring at a blank page again.
+  </p>
+
+  <div class="cover-stats">
+    <div class="cover-stat">
+      <span class="cover-stat-number">6</span>
+      <span class="cover-stat-label">Modules</span>
+    </div>
+    <div class="cover-divider"></div>
+    <div class="cover-stat">
+      <span class="cover-stat-number">50</span>
+      <span class="cover-stat-label">Done-for-You Prompts</span>
+    </div>
+    <div class="cover-divider"></div>
+    <div class="cover-stat">
+      <span class="cover-stat-number">30</span>
+      <span class="cover-stat-label">Days of Content</span>
+    </div>
+    <div class="cover-divider"></div>
+    <div class="cover-stat">
+      <span class="cover-stat-number">0</span>
+      <span class="cover-stat-label">Tech Skills Needed</span>
+    </div>
+  </div>
+
+  <div class="cover-outcomes">
+    <div class="cover-outcome-item">
+      <span class="check-icon">✓</span>
+      Write a week of captions in under 10 minutes
+    </div>
+    <div class="cover-outcome-item">
+      <span class="check-icon">✓</span>
+      Build a full 30-day content calendar in one afternoon
+    </div>
+    <div class="cover-outcome-item">
+      <span class="check-icon">✓</span>
+      Create emails, ads &amp; product descriptions with AI
+    </div>
+    <div class="cover-outcome-item">
+      <span class="check-icon">✓</span>
+      Sound like YOU — not a robot — in every post
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ MAIN ═══ -->
+<div class="main-container">
+
+  <!-- Welcome -->
+  <section class="welcome-section fade-in">
+    <p class="section-label">Welcome</p>
+    <h2 class="section-title">You Made the <em>Right Move</em></h2>
+    <p class="welcome-text">
+      If you're a small business owner who's been spending hours every week trying to come up with content ideas, write captions, send emails, and keep up with social media — this course will <strong style="color:var(--text-primary)">change everything.</strong> Over the next 6 modules, you'll unlock a <span class="viral-keyword">proven, game-changing</span> system to create all your business content in a fraction of the time. No tech skills required. No jargon. Just practical, copy-paste-ready systems that work.
+    </p>
+  </section>
+
+  <!-- How to Use -->
+  <div class="section-break fade-in"><div class="section-break-line"></div><div class="section-break-gem"></div><div class="section-break-line"></div></div>
+
+  <section class="fade-in">
+    <p class="section-label" style="text-align:center">How This Works</p>
+    <h2 class="section-title" style="text-align:center">Three Parts. <em>Every Module.</em></h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-number">01</div>
+        <div class="how-title">The Lesson</div>
+        <div class="how-desc">Plain-English explanation of exactly what to do and why — no jargon, no fluff. Just clarity.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-number">02</div>
+        <div class="how-title">Prompt Templates</div>
+        <div class="how-desc">Ready-to-use prompts you copy and paste directly into ChatGPT or Claude. Instant results.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-number">03</div>
+        <div class="how-title">Action Steps</div>
+        <div class="how-desc">A quick checklist so you apply every lesson immediately. Knowledge is nothing without action.</div>
+      </div>
+    </div>
+    <p class="content-p" style="margin-top:24px; text-align:center; font-style:italic">Work through one module at a time. Most modules take 20–30 minutes. By the end, you'll have a complete AI content system running for your business.</p>
+  </section>
+
+  <!-- ═══ MODULES ═══ -->
+  <div class="section-break fade-in"><div class="section-break-line"></div><div class="section-break-gem"></div><div class="section-break-line"></div></div>
+
+  <div class="modules-header fade-in">
+    <p class="section-label">The Curriculum</p>
+    <h2 class="section-title">Your <em>6-Module</em> System</h2>
+    <div class="module-progress-bar">
+      <div class="progress-dot active"></div>
+      <div class="progress-dot active"></div>
+      <div class="progress-dot active"></div>
+      <div class="progress-dot active"></div>
+      <div class="progress-dot active"></div>
+      <div class="progress-dot active"></div>
+    </div>
+  </div>
+
+  <!-- MODULE 1 -->
+  <div class="module-card fade-in">
+    <div class="module-header">
+      <div class="module-number-badge"><span class="module-num-label">MOD</span><span class="module-num-value">01</span></div>
+      <div class="module-header-text">
+        <div class="module-tag">Foundation</div>
+        <div class="module-title">AI Foundations for Small Business Owners</div>
+        <div class="module-subtitle">What AI actually is, what it isn't, and how to set it up in 15 minutes</div>
+      </div>
+      <div class="module-time-badge">⏱ 20 min</div>
+    </div>
+    <div class="module-body">
+      <div class="content-h2">What is AI Content Creation?</div>
+      <p class="content-p">AI content creation means using artificial intelligence tools — like ChatGPT or Claude — to help you write, edit, and generate content for your business. Think of it like having a <strong>fast writing assistant available 24/7</strong> who never gets tired and never has writer's block.</p>
+      <p class="content-p">The key word is <em>assist.</em> AI is a tool — you are still the boss. You give it instructions (called prompts), it gives you a draft, and you tweak it to sound like you. The more specific your instructions, the better the output. This is your <span class="viral-keyword">secret weapon.</span></p>
+
+      <div class="content-h2">Your Free Starter Toolkit</div>
+      <div class="toolkit-grid">
+        <div class="toolkit-item">
+          <div class="toolkit-number">Tool 01</div>
+          <div class="toolkit-name">ChatGPT</div>
+          <div class="toolkit-desc">chat.openai.com — Captions, emails, blog posts, ad copy. Your primary writing assistant.</div>
+        </div>
+        <div class="toolkit-item">
+          <div class="toolkit-number">Tool 02</div>
+          <div class="toolkit-name">Canva AI</div>
+          <div class="toolkit-desc">canva.com — Graphics, social media posts, presentations with built-in AI magic tools.</div>
+        </div>
+        <div class="toolkit-item">
+          <div class="toolkit-number">Tool 03</div>
+          <div class="toolkit-name">CapCut AI</div>
+          <div class="toolkit-desc">capcut.com — Short-form video editing with automatic captions and AI scripting.</div>
+        </div>
+      </div>
+      <p class="content-p" style="margin-top:8px; font-size:13.5px; font-style:italic; color:var(--text-muted)">All three have free plans that are more than enough to get started. You do not need to pay anything to begin.</p>
+
+      <div class="content-h2">Why AI Content Sounds Robotic (And How to Fix It)</div>
+      <p class="content-p">The number one complaint people have about AI content is that it sounds generic. This happens for one reason: <strong>the prompt was too vague.</strong> Here's the difference — and this insight alone is worth the entire course:</p>
+      <div class="compare-grid">
+        <div class="compare-card bad">
+          <div class="compare-badge">✗ Vague Prompt → Bad Result</div>
+          <div class="compare-text">Write a caption for my business.</div>
+        </div>
+        <div class="compare-card good">
+          <div class="compare-badge">✓ Specific Prompt → Great Result</div>
+          <div class="compare-text">Write 3 Instagram captions for my Cape Town bakery. My audience is working moms aged 25–40 who want quick, affordable treats for their kids. Use a warm, friendly tone. End each caption with a question to get comments. Add 5 relevant hashtags.</div>
+        </div>
+      </div>
+
+      <div class="action-box">
+        <div class="action-box-title">Your Action Steps — Module 01</div>
+        <ul class="action-list">
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Create your free ChatGPT account at chat.openai.com</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Create your free Canva account at canva.com</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Write down your business name, target customer, and brand tone in one sentence each</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Run the vague vs. specific prompt example above and compare the results</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 2 -->
+  <div class="module-card fade-in">
+    <div class="module-header">
+      <div class="module-number-badge"><span class="module-num-label">MOD</span><span class="module-num-value">02</span></div>
+      <div class="module-header-text">
+        <div class="module-tag">Content Writing</div>
+        <div class="module-title">Writing Content with AI</div>
+        <div class="module-subtitle">Social media captions, blog posts, and newsletters in minutes</div>
+      </div>
+      <div class="module-time-badge">⏱ 30 min</div>
+    </div>
+    <div class="module-body">
+      <div class="content-h2">Your Brand Voice Prompt (Do This First, Once)</div>
+      <p class="content-p">Before you write any content, you need to teach AI how you sound. This is the single most <span class="viral-keyword">life-changing</span> thing you'll do in this entire course. Do it once, save it, and paste it at the start of every session.</p>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Brand Voice Setup Prompt</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">My name is <span class="placeholder">[YOUR NAME]</span> and I run <span class="placeholder">[BUSINESS NAME]</span>, a <span class="placeholder">[TYPE OF BUSINESS]</span> in <span class="placeholder">[LOCATION]</span>. My target customers are <span class="placeholder">[DESCRIBE YOUR IDEAL CUSTOMER]</span>. My brand tone is <span class="placeholder">[e.g. warm and friendly / professional and trustworthy / fun and playful]</span>. I want all content to sound like a real person, not corporate or robotic. Please keep this in mind for everything I ask you to write today.</div>
+      </div>
+
+      <div class="content-h2">Social Media Captions</div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Caption Template</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Write 5 Instagram captions for <span class="placeholder">[BUSINESS TYPE]</span>. Today's topic is <span class="placeholder">[TOPIC/PRODUCT/PROMOTION]</span>. My audience is <span class="placeholder">[AUDIENCE]</span>. Tone: <span class="placeholder">[TONE]</span>. Each caption should be 2–3 short paragraphs, end with a question or call-to-action, and include 5–8 hashtags. Make each one different.</div>
+      </div>
+
+      <div class="content-h2">Blog Posts &amp; Newsletters</div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Blog Post Template</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Write a 400-word blog post for my <span class="placeholder">[BUSINESS TYPE]</span> called '<span class="placeholder">[TITLE]</span>'. My readers are <span class="placeholder">[AUDIENCE]</span>. The post should: open with a relatable problem, explain <span class="placeholder">[MAIN POINT]</span>, give 3 practical tips, and end with a call-to-action to <span class="placeholder">[DESIRED ACTION]</span>. Use short paragraphs and a conversational tone.</div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Newsletter Template</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Write a short email newsletter for my <span class="placeholder">[BUSINESS TYPE]</span>. Subject: something that creates curiosity or urgency. Body: 150 words max. Include: a warm opening, one useful tip about <span class="placeholder">[TOPIC]</span>, a short story or example, and a CTA to <span class="placeholder">[ACTION]</span>. Sign off with my name. Tone: <span class="placeholder">[TONE]</span>.</div>
+      </div>
+
+      <div class="content-h2">Product Descriptions That Sell</div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Product Description Template</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Write a product description for <span class="placeholder">[PRODUCT NAME]</span>. It costs <span class="placeholder">[PRICE]</span>. Key features: <span class="placeholder">[LIST FEATURES]</span>. My customer's main pain point is <span class="placeholder">[PAIN POINT]</span> and this product solves it by <span class="placeholder">[HOW]</span>. Write 3 versions: 1 short (50 words for social), 1 medium (100 words for website), 1 long (200 words with full benefits).</div>
+      </div>
+
+      <div class="action-box">
+        <div class="action-box-title">Your Action Steps — Module 02</div>
+        <ul class="action-list">
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Write your brand voice setup prompt and save it somewhere easy to find</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Generate 5 captions for your next week of posts</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Write one email newsletter using the template above</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Create product descriptions for your top 3 products or services</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 3 -->
+  <div class="module-card fade-in">
+    <div class="module-header">
+      <div class="module-number-badge"><span class="module-num-label">MOD</span><span class="module-num-value">03</span></div>
+      <div class="module-header-text">
+        <div class="module-tag">Visuals & Video</div>
+        <div class="module-title">AI Visuals &amp; Video</div>
+        <div class="module-subtitle">Create professional graphics and short-form videos without design skills</div>
+      </div>
+      <div class="module-time-badge">⏱ 25 min</div>
+    </div>
+    <div class="module-body">
+      <div class="content-h2">Canva AI — Your Design Shortcut</div>
+      <p class="content-p">Canva's AI tools let you generate images, resize designs instantly, and write text inside your graphics automatically. This is the <span class="viral-keyword">must-have</span> design hack for every small business owner.</p>
+
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <span class="step-hour">Step 1</span>
+          <span class="step-desc">Create one master post design with your brand colours and fonts</span>
+        </div>
+        <div class="workflow-step">
+          <span class="step-hour">Step 2</span>
+          <span class="step-desc">Use <strong style="color:var(--text-primary)">Magic Write</strong> to fill in the text for each post automatically</span>
+        </div>
+        <div class="workflow-step">
+          <span class="step-hour">Step 3</span>
+          <span class="step-desc">Use <strong style="color:var(--text-primary)">Magic Resize</strong> to get Facebook, LinkedIn, and Story versions instantly</span>
+        </div>
+        <div class="workflow-step">
+          <span class="step-hour">Step 4</span>
+          <span class="step-desc">Download all at once — one design becomes <strong style="color:var(--gold)">4 platform-ready posts</strong></span>
+        </div>
+      </div>
+
+      <div class="content-h2">CapCut AI — Scroll-Stopping Video in Minutes</div>
+      <p class="content-p">You don't need to film anything fancy. A phone, good lighting, and CapCut AI is all you need to create Reels and TikToks that convert. Use <strong>Auto Captions</strong> for instant transcription, <strong>AI Script</strong> if you don't know what to say, and <strong>Auto Cut</strong> to trim pauses automatically.</p>
+
+      <div class="content-h2">Your 30-Day Content Calendar — Built with AI</div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Content Calendar Prompt</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Create a 30-day social media content calendar for my <span class="placeholder">[BUSINESS TYPE]</span>. Include: post topic, content type (tip/story/promo/educational/engagement), and the best platform for each post. My business goals this month are <span class="placeholder">[GOALS]</span>. Include 3 promotional posts, 10 educational posts, 8 engagement posts, and 9 behind-the-scenes posts. Format it as a table.</div>
+      </div>
+
+      <div class="action-box">
+        <div class="action-box-title">Your Action Steps — Module 03</div>
+        <ul class="action-list">
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Create your first Canva graphic using Magic Write for the text</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Film a 30-second talking-head video and edit it in CapCut with auto-captions</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Generate your 30-day content calendar using the prompt above</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Schedule the first week of posts using Buffer or Meta Business Suite (both free)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 4 -->
+  <div class="module-card fade-in">
+    <div class="module-header">
+      <div class="module-number-badge"><span class="module-num-label">MOD</span><span class="module-num-value">04</span></div>
+      <div class="module-header-text">
+        <div class="module-tag">Advertising</div>
+        <div class="module-title">AI for Ads &amp; Promotions</div>
+        <div class="module-subtitle">Write Facebook, Instagram, and Google ads that convert — in minutes</div>
+      </div>
+      <div class="module-time-badge">⏱ 25 min</div>
+    </div>
+    <div class="module-body">
+      <div class="roi-highlight">
+        💡 <strong>Why most small business ads don't work:</strong> Most small business ads fail not because of the budget — but because of the copy. Weak headlines, vague offers, and no clear call-to-action mean people scroll right past. AI fixes this by helping you write multiple <span class="viral-keyword">high-converting</span> versions fast so you can test what works.
+      </div>
+
+      <div class="content-h2">Facebook &amp; Instagram Ad Copy</div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Facebook Ad Template — 3 Versions</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Write a Facebook ad for my <span class="placeholder">[BUSINESS/PRODUCT]</span>. Target audience: <span class="placeholder">[AUDIENCE]</span>. The main benefit is <span class="placeholder">[BENEFIT]</span>. The offer is <span class="placeholder">[OFFER, e.g. 20% off / free consultation / limited stock]</span>. Write 3 versions:
+Version A (problem-led: open with a pain point)
+Version B (result-led: open with the outcome)
+Version C (story-led: open with a short customer story)
+Each version needs a headline (under 8 words), body copy (under 100 words), and a CTA button text.</div>
+      </div>
+
+      <div class="content-h2">Google Ad Headlines</div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Google Ads Template</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Write 10 Google ad headlines for <span class="placeholder">[BUSINESS/SERVICE]</span> in <span class="placeholder">[LOCATION]</span>. Each headline must be under 30 characters. Focus on: search intent, key benefit, and urgency. Also write 4 description lines (under 90 characters each) that expand on the benefits and include a call to action.</div>
+      </div>
+
+      <div class="content-h2">A/B Testing with AI</div>
+      <p class="content-p">Never run just one version of an ad. Ask AI to give you variations and test which performs better — this is the <span class="viral-keyword">breakthrough strategy</span> that separates businesses that grow from businesses that guess.</p>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">A/B Test Prompt</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">I'm running a <span class="placeholder">[Facebook/Instagram/Google]</span> ad for <span class="placeholder">[PRODUCT/SERVICE]</span>. Give me 2 completely different versions of the headline that I can A/B test. Version A should appeal to <span class="placeholder">[EMOTION/BENEFIT 1]</span>. Version B should appeal to <span class="placeholder">[EMOTION/BENEFIT 2]</span>. Explain in one sentence why each headline might win.</div>
+      </div>
+
+      <div class="action-box">
+        <div class="action-box-title">Your Action Steps — Module 04</div>
+        <ul class="action-list">
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Write 3 versions of your next Facebook or Instagram ad using the template</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Create Google ad headlines for your top service or product</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Set up a simple A/B test by running 2 ad versions with identical budgets for 5 days</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> After 5 days, pause the weaker version and scale the winner</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 5 -->
+  <div class="module-card fade-in">
+    <div class="module-header">
+      <div class="module-number-badge"><span class="module-num-label">MOD</span><span class="module-num-value">05</span></div>
+      <div class="module-header-text">
+        <div class="module-tag">Email Marketing</div>
+        <div class="module-title">AI Email Marketing</div>
+        <div class="module-subtitle">Welcome sequences, promos, and newsletters that get opened and clicked</div>
+      </div>
+      <div class="module-time-badge">⏱ 30 min</div>
+    </div>
+    <div class="module-body">
+      <div class="roi-highlight">
+        📈 <strong>Why email is still the highest-ROI channel:</strong> Social media reaches maybe 5% of your followers. Email reaches 100% of your list. Every R1 spent on email marketing returns an average of <strong>R42</strong>. It's the single most valuable content asset you can build — and this <span class="viral-keyword">step-by-step</span> system makes it fast.
+      </div>
+
+      <div class="content-h2">Subject Lines That Get Opened</div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Subject Line Template — 10 Options</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Write 10 email subject lines for an email about <span class="placeholder">[TOPIC]</span> going to <span class="placeholder">[AUDIENCE]</span>. Mix these styles: 2 curiosity-based, 2 benefit-based, 2 urgency-based, 2 question-based, 2 personal/conversational. Keep all under 50 characters. Flag the top 3 you'd recommend testing first.</div>
+      </div>
+
+      <div class="content-h2">Welcome Email Sequence (3 Emails)</div>
+      <p class="content-p">When someone joins your list, these 3 emails build trust and set the tone. This sequence alone can transform cold subscribers into <span class="viral-keyword">loyal, paying customers.</span></p>
+
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Welcome Email 1 — Send Immediately</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Write a welcome email for new subscribers of <span class="placeholder">[BUSINESS NAME]</span>. Thank them for joining. Tell them who I am in 2 sentences. Tell them exactly what they'll receive (e.g. weekly tips, exclusive offers). Give them one quick win right now — share <span class="placeholder">[FREE TIP/RESOURCE]</span>. Warm, personal tone. Under 150 words.</div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Welcome Email 2 — Send Day 3</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Write email 2 of a welcome sequence for <span class="placeholder">[BUSINESS]</span>. This email should: share my story and why I started this business (make it relatable and human), mention the problem I solve, and end with a soft invitation to <span class="placeholder">[CHECK OUT PRODUCT/BOOK A CALL/VISIT THE SHOP]</span>. 200 words max.</div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Welcome Email 3 — Send Day 7</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Write email 3 of a welcome sequence for <span class="placeholder">[BUSINESS]</span>. This is the first 'offer' email. Introduce <span class="placeholder">[PRODUCT/SERVICE]</span> by focusing on the transformation it provides, not the features. Include a testimonial or result. End with a clear CTA to <span class="placeholder">[BUY/BOOK/VISIT]</span>. Create urgency without being salesy. 200 words.</div>
+      </div>
+
+      <div class="action-box">
+        <div class="action-box-title">Your Action Steps — Module 05</div>
+        <ul class="action-list">
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Write your 3-part welcome email sequence and load it into your email platform</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Generate 10 subject lines for your next email and pick the best 2 to A/B test</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Write one promotional email for your next sale or launch</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Set up Mailchimp or MailerLite (free up to 500 subscribers)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 6 -->
+  <div class="module-card fade-in">
+    <div class="module-header">
+      <div class="module-number-badge"><span class="module-num-label">MOD</span><span class="module-num-value">06</span></div>
+      <div class="module-header-text">
+        <div class="module-tag">The System</div>
+        <div class="module-title">Your 30-Day AI Content System</div>
+        <div class="module-subtitle">Batch a full month of content in one afternoon. Never run out of ideas again.</div>
+      </div>
+      <div class="module-time-badge">⏱ 30 min</div>
+    </div>
+    <div class="module-body">
+      <div class="content-h2">The Monthly Content Batching Method</div>
+      <p class="content-p">The most efficient way to use AI for content is to batch everything once a month — not create day-by-day. This is the <span class="viral-keyword">revolutionary approach</span> that gives you your time back.</p>
+
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <span class="step-hour">Hour 1</span>
+          <span class="step-desc">Generate your 30-day content calendar using the Module 3 prompt</span>
+        </div>
+        <div class="workflow-step">
+          <span class="step-hour">Hour 2</span>
+          <span class="step-desc">Write all captions, email subject lines, and post copy using AI</span>
+        </div>
+        <div class="workflow-step">
+          <span class="step-hour">Hour 3</span>
+          <span class="step-desc">Create all graphics in Canva using your saved templates</span>
+        </div>
+        <div class="workflow-step">
+          <span class="step-hour">Hour 4</span>
+          <span class="step-desc">Schedule everything using Buffer, Later, or Meta Business Suite</span>
+        </div>
+        <div class="workflow-step">
+          <span class="step-hour" style="background:rgba(201,168,76,0.15); border-color:var(--gold); color:var(--gold);">Result</span>
+          <span class="step-desc" style="color:var(--gold-light); font-weight:500">You're done for the month. Every day, content goes out automatically.</span>
+        </div>
+      </div>
+
+      <div class="content-h2">Content Pillars — Never Run Out of Ideas</div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Content Pillars Prompt</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">I run a <span class="placeholder">[BUSINESS TYPE]</span>. Help me define 5 content pillars that will attract <span class="placeholder">[TARGET CUSTOMER]</span> and build trust. For each pillar, give it a name, a one-sentence description, and 5 post ideas. My business goals are <span class="placeholder">[GOALS]</span>.</div>
+      </div>
+
+      <div class="content-h2">Repurposing Content with AI</div>
+      <p class="content-p">One piece of content can become many. Here's how to stretch every idea across every platform — <span class="viral-keyword">effortlessly</span>:</p>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Content Repurposing Prompt</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">I wrote this <span class="placeholder">[blog post / caption / email]</span>: <span class="placeholder">[PASTE YOUR CONTENT]</span>. Repurpose it into: 1 Instagram caption, 1 Facebook post, 1 LinkedIn post, 1 email subject line and teaser, and 3 short-form video script hooks. Keep my original message but adapt the tone and length for each platform.</div>
+      </div>
+
+      <div class="content-h2">Measuring What's Working</div>
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-label">Monthly Content Review Prompt</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="prompt-content">Here are my social media stats for the past month: <span class="placeholder">[PASTE STATS]</span>. Analyse what's working and what isn't. Tell me: which content type performed best, what I should do more of, what I should stop, and give me 3 specific things to change next month to improve results.</div>
+      </div>
+
+      <div class="action-box">
+        <div class="action-box-title">Your Action Steps — Module 06</div>
+        <ul class="action-list">
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Define your 5 content pillars using the prompt above</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Block 3–4 hours in your calendar this month for content batching</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Create your first full month of content using the batching workflow</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Set up your scheduling tool and queue everything up</li>
+          <li><div class="action-check" onclick="this.classList.toggle('done')"></div> Add a monthly 20-minute content review to your calendar</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BONUS PROMPTS ═══ -->
+  <div class="section-break fade-in"><div class="section-break-line"></div><div class="section-break-gem"></div><div class="section-break-line"></div></div>
+
+  <div class="bonus-section fade-in">
+    <div class="bonus-badge">★ Exclusive Bonus</div>
+    <p class="section-label">50 Done-for-You Templates</p>
+    <h2 class="section-title" style="margin-bottom:12px">The Complete <em>Prompt Library</em></h2>
+    <p class="content-p" style="margin-bottom:40px">Copy any of these prompts directly into ChatGPT or Claude. Replace the text in brackets with your details. This is your <span class="viral-keyword">unfair advantage</span>.</p>
+
+    <div class="prompt-category">
+      <div class="prompt-cat-title">📱 Social Media — 10 Prompts</div>
+      <div class="prompt-list">
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write 5 Instagram captions for [BUSINESS] about [TOPIC]. Audience: [AUDIENCE]. Tone: [TONE]. End each with a question.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate 10 TikTok video ideas for a [BUSINESS TYPE] that would appeal to [AUDIENCE].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a LinkedIn post sharing a lesson I learned running [BUSINESS]. Make it personal and professional.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Create a Facebook poll for my [BUSINESS PAGE] to increase engagement. Topic: [TOPIC].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write 3 Instagram Story sequences (5 slides each) for [TOPIC].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate 20 hashtag sets for [BUSINESS TYPE] in [LOCATION].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a pinned Instagram post that introduces my business, explains who I help, and tells people to follow.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Create a 7-day social media challenge for [AUDIENCE] related to [TOPIC].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write 5 'did you know' posts about [INDUSTRY] for [BUSINESS].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate 10 engagement question prompts I can post when I have nothing else to share.</div>
+      </div>
+    </div>
+
+    <div class="prompt-category">
+      <div class="prompt-cat-title">✉️ Email Marketing — 10 Prompts</div>
+      <div class="prompt-list">
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a welcome email for new subscribers of [BUSINESS]. Warm, personal, under 150 words.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write 10 subject lines for an email about [TOPIC]. Mix curiosity, benefit, and urgency styles.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Create a 5-email nurture sequence for [BUSINESS] leading to [OFFER].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a cart abandonment email for [PRODUCT]. Remind them what they're missing and offer [INCENTIVE].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a re-engagement email for subscribers who haven't opened in 90 days.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate a promotional email for [PRODUCT/SERVICE] with a deadline of [DATE].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a post-purchase thank you email for [PRODUCT] that encourages a review.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Create an email asking for referrals from happy customers of [BUSINESS].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a birthday email campaign for customers with a [DISCOUNT] offer.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate 5 PS lines I can add to the end of marketing emails to drive clicks.</div>
+      </div>
+    </div>
+
+    <div class="prompt-category">
+      <div class="prompt-cat-title">📣 Ads &amp; Promotions — 10 Prompts</div>
+      <div class="prompt-list">
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write 3 Facebook ad versions (problem/result/story-led) for [PRODUCT].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate 10 Google ad headlines under 30 characters for [SERVICE] in [LOCATION].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a Google ad description (under 90 characters) for [SERVICE].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Create a Black Friday promotional post for [BUSINESS]. Offer: [DETAILS].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a retargeting ad for people who visited my website but didn't buy [PRODUCT].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate 5 ad hooks (opening lines) for a video ad about [PRODUCT].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a seasonal campaign for [SEASON/HOLIDAY] for [BUSINESS].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Create a flash sale post for [PRODUCT] valid for 24 hours only.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a referral programme announcement post for [BUSINESS].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate 3 versions of a testimonial ad using this review: [PASTE REVIEW].</div>
+      </div>
+    </div>
+
+    <div class="prompt-category">
+      <div class="prompt-cat-title">📝 Content &amp; Blog — 10 Prompts</div>
+      <div class="prompt-list">
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a 400-word blog post titled '[TITLE]' for [AUDIENCE].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate 20 blog post ideas for a [BUSINESS TYPE] targeting [AUDIENCE].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write an FAQ page for [BUSINESS] covering the 10 most common questions customers ask.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Create a 'Top 10 tips' post about [TOPIC] for [AUDIENCE].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a comparison post: [OPTION A] vs [OPTION B] for [AUDIENCE].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate a 'How to' guide for [TOPIC] in under 300 words.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a behind-the-scenes post about how I [PROCESS/CREATE PRODUCT].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Create a seasonal gift guide featuring [PRODUCTS] for [AUDIENCE].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a 'myth vs reality' post about [TOPIC] in my industry.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate a testimonial request email I can send to happy customers.</div>
+      </div>
+    </div>
+
+    <div class="prompt-category">
+      <div class="prompt-cat-title">🎯 Business &amp; Strategy — 10 Prompts</div>
+      <div class="prompt-list">
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Help me write my brand voice guide. My business is [DETAILS]. Include tone, vocabulary to use, vocabulary to avoid, and examples.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write my business bio for [PLATFORM] in [LENGTH]. Include who I help, what I do, and a CTA.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate 5 unique selling points for [BUSINESS] vs competitors.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a customer avatar profile for my ideal customer for [BUSINESS].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Create an onboarding email sequence for new customers of [PRODUCT/SERVICE].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write responses to the 5 most common objections customers have about buying [PRODUCT].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Generate a referral request script I can send by WhatsApp to existing customers.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a Google Business profile description for [BUSINESS] optimised for local SEO.</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Create a content repurposing plan for this [BLOG POST / VIDEO / PODCAST]: [PASTE CONTENT].</div>
+        <div class="prompt-item"><span class="prompt-item-icon">◆</span>Write a 12-month content theme calendar for [BUSINESS], one theme per month.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ RESOURCES ═══ -->
+  <div class="section-break fade-in"><div class="section-break-line"></div><div class="section-break-gem"></div><div class="section-break-line"></div></div>
+
+  <section class="resources-section fade-in">
+    <p class="section-label" style="text-align:center">Valuable Resources</p>
+    <h2 class="section-title" style="text-align:center; margin-bottom:8px">Everything You <em>Need to Succeed</em></h2>
+    <p class="content-p" style="text-align:center; max-width:560px; margin:0 auto 8px">Handpicked tools, platforms, and resources to amplify everything you've learned in this course.</p>
+
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="resource-icon">✍️</div>
+        <div class="resource-card-type">AI Writing</div>
+        <div class="resource-card-title">ChatGPT (OpenAI)</div>
+        <div class="resource-card-desc">Your primary AI writing assistant. The free plan is powerful enough for everything in this course. Start here.</div>
+        <a class="resource-link" href="https://chat.openai.com" target="_blank">chat.openai.com →</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">🤖</div>
+        <div class="resource-card-type">AI Writing</div>
+        <div class="resource-card-title">Claude (Anthropic)</div>
+        <div class="resource-card-desc">Excellent for longer, more nuanced content. Great for writing that sounds more human. Use alongside ChatGPT.</div>
+        <a class="resource-link" href="https://claude.ai" target="_blank">claude.ai →</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">🎨</div>
+        <div class="resource-card-type">Design</div>
+        <div class="resource-card-title">Canva</div>
+        <div class="resource-card-desc">Professional graphics in minutes. Use Magic Write, Magic Resize, and Text to Image for AI-powered design.</div>
+        <a class="resource-link" href="https://canva.com" target="_blank">canva.com →</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">🎬</div>
+        <div class="resource-card-type">Video Editing</div>
+        <div class="resource-card-title">CapCut</div>
+        <div class="resource-card-desc">Auto captions, AI scripts, and smart editing for Reels, TikToks, and YouTube Shorts. Free and powerful.</div>
+        <a class="resource-link" href="https://capcut.com" target="_blank">capcut.com →</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">📧</div>
+        <div class="resource-card-type">Email Marketing</div>
+        <div class="resource-card-title">MailerLite</div>
+        <div class="resource-card-desc">Free up to 1,000 subscribers. Clean interface, automation workflows, and great deliverability. Highly recommended.</div>
+        <a class="resource-link" href="https://mailerlite.com" target="_blank">mailerlite.com →</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">📅</div>
+        <div class="resource-card-type">Scheduling</div>
+        <div class="resource-card-title">Buffer</div>
+        <div class="resource-card-desc">Schedule posts across all platforms from one place. Free plan covers 3 channels. The simplest scheduler available.</div>
+        <a class="resource-link" href="https://buffer.com" target="_blank">buffer.com →</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">📊</div>
+        <div class="resource-card-type">Analytics</div>
+        <div class="resource-card-title">Meta Business Suite</div>
+        <div class="resource-card-desc">Free analytics and scheduling for Facebook and Instagram. Check your best-performing posts monthly here.</div>
+        <a class="resource-link" href="https://business.facebook.com" target="_blank">business.facebook.com →</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">🔍</div>
+        <div class="resource-card-type">SEO & Keywords</div>
+        <div class="resource-card-title">Google Keyword Planner</div>
+        <div class="resource-card-desc">Find what your customers are actually searching for. Use these keywords in your AI prompts for content that ranks.</div>
+        <a class="resource-link" href="https://ads.google.com/home/tools/keyword-planner/" target="_blank">Google Keyword Planner →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 30-DAY PLAN ═══ -->
+  <div class="section-break fade-in"><div class="section-break-line"></div><div class="section-break-gem"></div><div class="section-break-line"></div></div>
+
+  <section class="fade-in">
+    <p class="section-label" style="text-align:center">Your Roadmap</p>
+    <h2 class="section-title" style="text-align:center">Your <em>30-Day</em> Action Plan</h2>
+
+    <div class="plan-grid" style="margin-top:40px">
+      <div class="plan-week">
+        <div class="plan-week-num">Week 01</div>
+        <div class="plan-week-title">Set Up</div>
+        <div class="plan-week-desc">Set up ChatGPT, Canva, and CapCut. Write and save your brand voice prompt. Complete Module 1 &amp; 2.</div>
+      </div>
+      <div class="plan-week">
+        <div class="plan-week-num">Week 02</div>
+        <div class="plan-week-title">Plan</div>
+        <div class="plan-week-desc">Define your 5 content pillars. Build your first 30-day content calendar. Complete Modules 3 &amp; 4.</div>
+      </div>
+      <div class="plan-week">
+        <div class="plan-week-num">Week 03</div>
+        <div class="plan-week-title">Create</div>
+        <div class="plan-week-desc">Batch all your content for the month. Schedule everything. Set up your email welcome sequence.</div>
+      </div>
+      <div class="plan-week">
+        <div class="plan-week-num">Week 04</div>
+        <div class="plan-week-title">Optimise</div>
+        <div class="plan-week-desc">Review your results. Use the monthly review prompt. Tweak what isn't working. Plan next month.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BRAND PUBLISHER BLOCK ═══ -->
+  <div class="fade-in" style="text-align:center; margin: 0 0 64px;">
+    <div style="display:inline-flex; flex-direction:column; align-items:center; gap:16px; background:var(--dark-card); border:1px solid var(--border-strong); border-radius:24px; padding:44px 64px; position:relative; overflow:hidden;">
+      <div style="position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);"></div>
+      <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--text-muted);">Published by</div>
+      <div style="display:flex; align-items:baseline; line-height:1;">
+        <span style="font-family:'Playfair Display',serif; font-size:42px; font-weight:900; color:var(--white); letter-spacing:-1px;">Pdenterprises</span><span style="font-family:'Playfair Display',serif; font-size:42px; font-weight:400; font-style:italic; color:var(--gold); letter-spacing:-1px;">media</span>
+      </div>
+      <div style="width:48px; height:1px; background:var(--border-strong);"></div>
+      <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted);">For Small Business Owners &nbsp;·&nbsp; No Tech Skills Required &nbsp;·&nbsp; Vol. I · 2026 Edition</div>
+      <div style="display:flex; gap:12px; margin-top:4px; flex-wrap:wrap; justify-content:center;">
+        <span style="background:rgba(201,168,76,0.08); border:1px solid var(--border-strong); border-radius:6px; padding:5px 14px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--gold);">● Beginner Friendly</span>
+        <span style="background:rgba(201,168,76,0.08); border:1px solid var(--border-strong); border-radius:6px; padding:5px 14px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--gold);">● Instant Download</span>
+        <span style="background:rgba(201,168,76,0.08); border:1px solid var(--border-strong); border-radius:6px; padding:5px 14px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--gold);">● 50 Done-For-You Prompts</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CLOSING ═══ -->
+  <div class="section-break fade-in"><div class="section-break-line"></div><div class="section-break-gem"></div><div class="section-break-line"></div></div>
+
+  <section class="closing-section fade-in">
+    <p class="section-label">Remember This</p>
+    <blockquote class="closing-quote">
+      "Done is better than perfect. <span>One post a day</span>, created in 5 minutes with AI, will outperform one perfect post a month every single time."
+    </blockquote>
+    <p class="closing-sub">The goal is not perfection. The goal is consistency. You now have everything you need.</p>
+    <p style="font-size:22px; color:var(--gold); font-family:'Playfair Display',serif; font-style:italic">Now go create. ✦</p>
+
+    <div class="closing-brand">
+      AI Content Mastery — For Small Business Owners &nbsp;&bull;&nbsp; <strong style="color:var(--gold)">Pdenterprises<span style="font-weight:300">media</span></strong> &nbsp;&bull;&nbsp; Share this course with a fellow business owner who needs it.
+    </div>
+  </section>
+
+</div><!-- end main-container -->
+
+<script>
+// Copy button functionality
+function copyPrompt(btn) {
+  const block = btn.closest('.prompt-block');
+  const content = block.querySelector('.prompt-content');
+  const text = content.innerText.replace(/\n+/g, ' ').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.style.background = 'rgba(76,175,124,0.2)';
+    btn.style.borderColor = 'rgba(76,175,124,0.5)';
+    btn.style.color = '#4CAF7C';
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }, 2000);
+  });
+}
+
+// Scroll-triggered fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

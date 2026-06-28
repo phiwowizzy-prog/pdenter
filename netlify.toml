@@ -1,7 +1,99 @@
+# ═══════════════════════════════════════════════════════════
+# NETLIFY DEPLOY CONFIG — Pdenterprisesmedia
+# pdenterprisesmedia.com
+# ═══════════════════════════════════════════════════════════
+
 [build]
-  command = "vite build"
-  publish = "dist/client"
-[dev]
-  command = "npm run dev"
-  targetPort = 3000
-  port = 8888
+  publish = "."
+  command = ""
+
+# ── GLOBAL HEADERS (Security + Performance) ──
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options            = "SAMEORIGIN"
+    X-XSS-Protection           = "1; mode=block"
+    X-Content-Type-Options     = "nosniff"
+    Referrer-Policy            = "strict-origin-when-cross-origin"
+    Permissions-Policy         = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security  = "max-age=31536000; includeSubDomains; preload"
+    Content-Security-Policy    = "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; frame-src https://www.googletagmanager.com https://pagead2.googlesyndication.com;"
+
+# ── CACHE: HTML pages (short — always fresh) ──
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ── CACHE: Assets (long — fonts, images, etc.) ──
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ── CACHE: CSS & JS ──
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=3600"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=3600"
+
+# ═══════════════════════════════════════════════════════════
+# REDIRECTS
+# ═══════════════════════════════════════════════════════════
+
+# Clean URLs (no .html extension needed)
+[[redirects]]
+  from   = "/store"
+  to     = "/index.html"
+  status = 200
+
+[[redirects]]
+  from   = "/course"
+  to     = "/ai-content-mastery.html"
+  status = 200
+
+[[redirects]]
+  from   = "/ai-content-mastery"
+  to     = "/ai-content-mastery.html"
+  status = 200
+
+[[redirects]]
+  from   = "/calcpro"
+  to     = "/calcpro.html"
+  status = 200
+
+[[redirects]]
+  from   = "/calculators"
+  to     = "/calcpro.html"
+  status = 200
+
+[[redirects]]
+  from   = "/free"
+  to     = "/index.html#free-downloads"
+  status = 301
+
+[[redirects]]
+  from   = "/advertise"
+  to     = "/index.html#advertise"
+  status = 301
+
+[[redirects]]
+  from   = "/guides"
+  to     = "/index.html#guides"
+  status = 301
+
+[[redirects]]
+  from   = "/shop"
+  to     = "/index.html#products"
+  status = 301
+
+# 404 fallback → custom 404 page
+[[redirects]]
+  from   = "/*"
+  to     = "/404.html"
+  status = 404
