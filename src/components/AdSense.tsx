@@ -23,8 +23,8 @@ export function AdSense({ size = 'leaderboard', className = '' }: AdSenseProps) 
        * Example:
        *   <ins class="adsbygoogle"
        *     style={{ display: 'block', width: config.width, height: config.height }}
-       *     data-ad-client="ca-pub-8581996512005206
-       *     data-ad-slot=4174549262
+       *     data-ad-client="ca-pub-"8581996512005206"
+       *     data-ad-slot="4174549262"
        *     data-ad-format="auto"
        *     data-full-width-responsive="true">
        *   </ins>
