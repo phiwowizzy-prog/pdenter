@@ -1,2 +1,2 @@
-# Ads.txt placeholder
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# Ads.txt for LexiCount Pro
+google.com, pub-8581996512005206, DIRECT, f08c47fec0942fa0

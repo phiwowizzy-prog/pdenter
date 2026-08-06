@@ -125,4 +125,29 @@
   var search = document.getElementById('tool-search');
   window.addEventListener('keydown',function(e){if(e.key==='/' && document.activeElement.tagName!=='INPUT' && document.activeElement.tagName!=='TEXTAREA'){e.preventDefault();search.focus();}});
 
+  // Cookie consent & AdSense initialization
+  function initAdsIfConsent(){
+    try{
+      var consent = localStorage.getItem('lc-cookie-consent');
+      if(consent === 'all'){
+        // initialize ads by pushing to adsbygoogle for each ins
+        var ins = document.querySelectorAll('ins.adsbygoogle');
+        ins.forEach(function(i){try{(adsbygoogle = window.adsbygoogle || []).push({});}catch(e){console.warn('adsbygoogle push failed',e)}});
+      }
+    }catch(e){console.warn(e)}
+  }
+
+  function showCookieBanner(){
+    if(localStorage.getItem('lc-cookie-consent')) return; // already chosen
+    var banner = document.createElement('div');
+    banner.id = 'lc-cookie-banner';
+    banner.innerHTML = '\n      <div style="position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #eee;padding:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;z-index:10000">\n        <div style="max-width:70%">\n          <strong>We use cookies</strong> — to serve ads and improve the site. You can accept all cookies or use essential only.\n        </div>\n        <div style="display:flex;gap:8px">\n          <button id="lc-cookie-essential" style="background:#fff;border:1px solid #ddd;padding:8px;border-radius:8px">Essential only</button>\n          <button id="lc-cookie-accept" style="background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px">Accept all</button>\n        </div>\n      </div>';
+    document.body.appendChild(banner);
+    document.getElementById('lc-cookie-accept').addEventListener('click',function(){localStorage.setItem('lc-cookie-consent','all');document.getElementById('lc-cookie-banner').remove();initAdsIfConsent();});
+    document.getElementById('lc-cookie-essential').addEventListener('click',function(){localStorage.setItem('lc-cookie-consent','essential');document.getElementById('lc-cookie-banner').remove();});
+  }
+
+  // Run cookie banner on load and try to init ads (only if accepted)
+  window.addEventListener('load',function(){showCookieBanner();initAdsIfConsent();});
+
 })();
