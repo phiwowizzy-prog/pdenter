@@ -9,4 +9,28 @@
     <loc>https://yourdomain.example/tools/word-counter</loc>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://yourdomain.example/blog/how-many-words-5-minute-speech</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.example/blog/flesch-kincaid-formula-explained</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.example/blog/unscramble-7-letter-word</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.example/blog/text-to-speech-online-free</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.example/blog/essay-word-counter</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.example/blog/word-counter-for-students</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.example/blog/readability-checker-online</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.example/blog/word-unscrambler-online</loc>
+  </url>
 </urlset>
