@@ -1,0 +1,46 @@
+/* Minimal, luxury-first CSS — mobile-first */
+:root{
+  --bg:#ffffff;
+  --accent:#bfa66a; /* muted gold */
+  --text:#111214;
+  --muted:#6b6f76;
+  --radius:10px;
+  --container:1060px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.container{max-width:var(--container);margin:0 auto;padding:24px}
+.site-header{border-bottom:1px solid #f0f0f0;background:linear-gradient(#fff, #fff);position:sticky;top:0;z-index:40}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.brand{font-family:"Playfair Display",serif;font-size:20px;color:var(--text);text-decoration:none}
+.nav a{margin-left:18px;color:var(--muted);text-decoration:none}
+.hero{padding:48px 0}
+.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:start}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:20px}}
+h1{font-family:"Playfair Display",serif;font-size:28px;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 18px}
+.search{width:100%;padding:12px;border-radius:8px;border:1px solid #eee}
+.hero-widget textarea{width:100%;min-height:160px;padding:12px;border:1px solid #eee;border-radius:10px;resize:vertical}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.stat{background:rgba(191,166,106,0.06);padding:10px;border-radius:8px;min-width:120px}
+.stat strong{display:block;font-size:18px}
+.widget-actions{display:flex;gap:8px;margin-top:12px}
+.widget-actions button{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.tool-card{display:block;padding:16px;background:#fff;border:1px solid #f4f4f4;border-radius:10px;text-decoration:none;color:var(--text);box-shadow:0 6px 18px rgba(17,18,20,0.04)}
+.muted{color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+textarea, input, select{font:inherit}
+.tools-overview{margin-top:36px}
+.testimonials{margin-top:36px}
+.faq{margin-top:36px}
+.widget-actions button.secondary{background:#fff;color:var(--accent);border:1px solid #eee}

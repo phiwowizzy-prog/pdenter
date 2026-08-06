@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Word Unscrambler — LexiCount Pro</title>
+  <meta name="description" content="Enter scrambled letters and get every valid word. Filter by length, sort by frequency. Private & fast.">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header"><div class="container header-inner"><a class="brand" href="/">LexiCount Pro™</a></div></header>
+  <main class="container">
+    <h1>Word Unscrambler</h1>
+    <p class="muted">Type letters and see matched words instantly.</p>
+    <label for="unscramble-input" class="sr-only">Letters</label>
+    <input id="unscramble-input" placeholder="e.g. 'raet'" />
+    <div>
+      <label>Min length <input type="number" id="minlen" min="2" value="2" /></label>
+    </div>
+    <div id="unscramble-results" aria-live="polite">Enter letters to begin</div>
+  </main>
+  <script src="/assets/js/app.js" defer></script>
+</body>
+</html>

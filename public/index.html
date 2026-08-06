@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LexiCount Pro™ — Every Word Tool You'll Ever Need, Beautifully Done</title>
+  <meta name="description" content="LexiCount Pro™: Free, private, lightning-fast word & writing tools — word counter, unscrambler, text-to-speech, voice-to-text and more. Processed in your browser. No sign-up.">
+  <link rel="canonical" href="/" />
+  <meta property="og:title" content="LexiCount Pro™ — Every Word Tool You'll Ever Need, Beautifully Done" />
+  <meta property="og:description" content="Free, private, lightning-fast word & writing tools — word counter, unscrambler, text-to-speech, voice-to-text and more." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "LexiCount Pro",
+    "url": "https://yourdomain.example/",
+    "description": "A premium suite of word, writing and document tools — fast, private, and beautiful.",
+    "applicationCategory": "Utilities",
+    "operatingSystem": "All",
+    "author": {"@type":"Organization","name":"LexiCount Pro"}
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="/">LexiCount Pro™</a>
+      <nav class="nav" role="navigation" aria-label="Primary">
+        <a href="/tools/word-counter.html">Tools</a>
+        <a href="/blog/">Blog</a>
+        <a href="/legal/about.html">About</a>
+        <button id="open-search" aria-label="Search tools">Search</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 id="hero-heading">LexiCount Pro™ — Every Word Tool You'll Ever Need, Beautifully Done</h1>
+          <p class="sub">Count, unscramble, convert, and perfect your words instantly — free, private, and processed right in your browser. No sign-up. No clutter. No limits.</p>
+
+          <div class="hero-actions">
+            <input id="tool-search" class="search" placeholder="Jump to a tool — try 'word counter'" aria-label="Search tools">
+          </div>
+
+          <ul class="trust-badges" aria-hidden="true">
+            <li>SSL Secure</li>
+            <li>GDPR Compliant</li>
+            <li>Privacy-first</li>
+          </ul>
+
+        </div>
+
+        <div class="hero-widget" aria-live="polite">
+          <label for="hero-text" class="sr-only">Enter text</label>
+          <textarea id="hero-text" placeholder="Type or paste your text here — watch stats update in real time." aria-label="Text input for live word counter"></textarea>
+
+          <div class="stats" id="hero-stats" aria-hidden="false">
+            <div class="stat"><strong id="stat-words">0</strong><span>Words</span></div>
+            <div class="stat"><strong id="stat-chars">0</strong><span>Characters</span></div>
+            <div class="stat"><strong id="stat-chars-nospace">0</strong><span>Chars (no spaces)</span></div>
+            <div class="stat"><strong id="stat-sentences">0</strong><span>Sentences</span></div>
+            <div class="stat"><strong id="stat-paragraphs">0</strong><span>Paragraphs</span></div>
+            <div class="stat"><strong id="stat-reading">0</strong><span>Reading min</span></div>
+            <div class="stat"><strong id="stat-speaking">0</strong><span>Speaking min</span></div>
+          </div>
+
+          <div class="widget-actions">
+            <button id="download-txt">Download .txt</button>
+            <button id="copy-result">Copy</button>
+            <button id="mic-toggle" aria-pressed="false" title="Toggle dictation">🎙️</button>
+          </div>
+
+          <p class="muted">Recent tools: <span id="recent-tools">—</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-overview container">
+      <h2>Popular Tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="/tools/word-counter.html">Word Counter</a>
+        <a class="tool-card" href="/tools/word-unscrambler.html">Word Unscrambler</a>
+        <a class="tool-card" href="/tools/text-to-speech.html">Text to Speech</a>
+        <a class="tool-card" href="/tools/voice-to-text.html">Voice to Text</a>
+        <a class="tool-card" href="/tools/pdf-tools.html">PDF Tools</a>
+        <a class="tool-card" href="/tools/readability.html">Readability Checker</a>
+      </div>
+    </section>
+
+    <section class="testimonials container">
+      <h2>What people love</h2>
+      <blockquote>"Clean, fast, and private — my go-to for essay word counts." — Student Reviewer</blockquote>
+      <blockquote>"Feels like premium software, not an ad farm." — Educator</blockquote>
+    </section>
+
+    <section class="faq container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">FAQ</h2>
+      <details>
+        <summary>Is my text sent to a server?</summary>
+        <p>Core tools process text in your browser by default. Any feature that requires a server (AI summarizer, PDF OCR) is clearly marked and files are deleted automatically after processing.</p>
+      </details>
+      <details>
+        <summary>Do I need an account?</summary>
+        <p>No — all free tools work without an account. Premium features require signing up.</p>
+      </details>
+    </section>
+
+    <section class="blog-preview container">
+      <h2>From the LexiCount Guides</h2>
+      <ul>
+        <li><a href="#">How Many Words Is a 5-Minute Speech?</a></li>
+        <li><a href="#">The Flesch-Kincaid Formula, Explained</a></li>
+        <li><a href="#">Word Unscrambling Strategies for Scrabble & Wordle</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand" href="/">LexiCount Pro™</a>
+        <p class="muted">Every Word Tool You'll Ever Need, Beautifully Done.</p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="/legal/privacy-policy.html">Privacy Policy</a>
+        <a href="/legal/terms.html">Terms</a>
+        <a href="/legal/cookie-policy.html">Cookie Policy</a>
+        <a href="/legal/dmca.html">DMCA</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js" defer></script>
+</body>
+</html>

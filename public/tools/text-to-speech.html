@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Text to Speech — LexiCount Pro</title>
+  <meta name="description" content="Paste text and listen — adjustable speed and voice. Built with the Web Speech API.">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header"><div class="container header-inner"><a class="brand" href="/">LexiCount Pro™</a></div></header>
+  <main class="container">
+    <h1>Text to Speech</h1>
+    <textarea id="tts-text" placeholder="Paste text to read aloud"></textarea>
+    <div>
+      <label for="tts-voice">Voice</label>
+      <select id="tts-voice"></select>
+      <label for="tts-rate">Speed</label>
+      <input id="tts-rate" type="range" min="0.5" max="2" step="0.1" value="1" />
+    </div>
+    <div class="widget-actions">
+      <button id="tts-play">Play</button>
+      <button id="tts-stop">Stop</button>
+    </div>
+  </main>
+  <script src="/assets/js/app.js" defer></script>
+</body>
+</html>

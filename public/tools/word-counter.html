@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Word Counter — LexiCount Pro</title>
+  <meta name="description" content="Live word counter: words, characters, sentences, paragraphs, reading & speaking time — instant and private, runs in your browser.">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header"><div class="container header-inner"><a class="brand" href="/">LexiCount Pro™</a></div></header>
+  <main class="container">
+    <h1>Word Counter</h1>
+    <p class="muted">Live — no submit button. Useful for essays, social posts, and reports.</p>
+    <textarea id="wc-text" placeholder="Paste or type your text here"></textarea>
+    <div class="stats" id="wc-stats">
+      <div class="stat"><strong id="wc-words">0</strong><span>Words</span></div>
+      <div class="stat"><strong id="wc-chars">0</strong><span>Characters</span></div>
+      <div class="stat"><strong id="wc-chars-nospace">0</strong><span>Chars (no spaces)</span></div>
+      <div class="stat"><strong id="wc-sentences">0</strong><span>Sentences</span></div>
+      <div class="stat"><strong id="wc-paragraphs">0</strong><span>Paragraphs</span></div>
+      <div class="stat"><strong id="wc-reading">0</strong><span>Reading min</span></div>
+    </div>
+    <div class="widget-actions">
+      <button id="wc-download">Download .txt</button>
+      <button id="wc-copy">Copy</button>
+    </div>
+  </main>
+  <script src="/assets/js/app.js" defer></script>
+</body>
+</html>
