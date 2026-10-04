@@ -404,7 +404,7 @@ function SmoothieCard({
                       display: 'inline-block',
                     }}
                   />
-                  {ing}
+                  {ing.item}
                 </li>
               ))}
             </ul>
